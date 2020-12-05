@@ -23,8 +23,20 @@ class _Detail extends State<Detail> {
   @override
   void initState() {
     super.initState();
+    this.fetchUser();
+    
+  }
+
+  Future fetchUser() async{
     try{
-      this.fetchUser();
+      setState(() {
+        isLoading = true;
+      });
+      productOwner = await _database.getProductOwner(this.product.ownerId);
+
+      setState(() {
+        isLoading = false;
+      });
     }
     catch(err){
       print('Error: $err');
@@ -34,19 +46,8 @@ class _Detail extends State<Detail> {
     }
   }
 
-  Future fetchUser() async{
-    setState(() {
-      isLoading = true;
-    });
-    productOwner = await _database.getProductOwner(this.product.ownerId);
 
-    setState(() {
-      isLoading = false;
-    });
-  }
-
-
-  final myFormKey = GlobalKey<FormState>();
+  // final myFormKey = GlobalKey<FormState>();
   int _currentIndex = 0;
 
   @override
