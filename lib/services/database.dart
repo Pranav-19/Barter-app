@@ -101,7 +101,8 @@ class DatabaseService{
                     description: document.get('description'),
                     imgUrl: document.get('imageUrl'),
                     months: document.get('monthsOld'),
-                    years: document.get('yearsOld')
+                    years: document.get('yearsOld'),
+                    ownerId: document.get('ownerId')
                 ))
               }
             }
