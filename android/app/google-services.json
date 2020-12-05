@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "96370211990",
+    "firebase_url": "https://goods-exchange-app-115f2.firebaseio.com",
+    "project_id": "goods-exchange-app-115f2",
+    "storage_bucket": "goods-exchange-app-115f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96370211990:android:a271f8680e2963d19916b7",
+        "android_client_info": {
+          "package_name": "com.example.exchange_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96370211990-qtqm88hil5hei8ritphtesgtbdvafs88.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN4gQtDPZlVy59_pQT1QpkBOr9WIcCQGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96370211990-qtqm88hil5hei8ritphtesgtbdvafs88.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
