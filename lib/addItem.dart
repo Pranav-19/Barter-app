@@ -1,9 +1,10 @@
-import 'package:exchange_app/loading.dart';
+// import 'package:exchange_app/loading.dart';
 import 'package:exchange_app/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:image_picker/image_picker.dart';
+import 'products_list.dart';
 import 'dart:io';
 
 
@@ -21,7 +22,7 @@ class _AddItemState extends State<AddItem> {
   int _years=0,_months=0;
   String name='',description = '',imageUrl = '';
   SnackBar snackBar;
-  bool loading =false;
+  bool isloading =false;
   final DatabaseService _database = new DatabaseService(uid: FirebaseAuth.instance.currentUser.uid);
 
 
@@ -39,8 +40,23 @@ class _AddItemState extends State<AddItem> {
   }
 
   Future onSubmit() async{
-    if(_image!=null){
-     imageUrl = await _database.addProductImage(_image);
+    try{
+      setState(() {
+        isloading = true;
+      });
+      if(_image!=null){
+      imageUrl = await _database.addProductImage(_image);
+    }
+
+      setState(() {
+        isloading = false;
+      });
+    }
+    catch(err){
+      print("Error$err");
+      setState(() {
+        isloading = false;
+      });
     }
     return _database.addProduct(name, description, _years, _months, imageUrl).then((value) => {
       // print('Product added to firstore');
@@ -52,7 +68,9 @@ class _AddItemState extends State<AddItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    isloading?LoadingScreen()
+    :Scaffold(
         body:SafeArea(
 
         child:Container(
@@ -208,12 +226,12 @@ class _AddItemState extends State<AddItem> {
 //                      Navigator.push(context,
 //                          MaterialPageRoute(builder: (context) => Detail()));
                     setState(() {
-                      loading = true;
+                      isloading = true;
                     });
                     await onSubmit();
                     Navigator.pop(context);
                     setState(() {
-                      loading = false;
+                      isloading = false;
                     });
                     Scaffold.of(context).showSnackBar(snackBar);
                     },
@@ -240,3 +258,19 @@ class _AddItemState extends State<AddItem> {
     );
   }
 }
+
+
+// class LoadingScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         color: Colors.white,
+//         child:Center(
+//       child: SpinKitChasingDots(
+//         color: Theme.of(context).primaryColor,
+//         size: 45,
+//       ),
+//     )
+//     );
+//   }
+// }
