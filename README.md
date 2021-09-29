@@ -1,6 +1,6 @@
 # exchange_app
 
-A new Flutter project.
+A mobile application that can be used by people who want to exchange any type of used items like electronic gadgets, books, toys, etc. Users can upload pictures and description of their used items so that other users can view them and contact them if interested.
 
 ## Getting Started
 
